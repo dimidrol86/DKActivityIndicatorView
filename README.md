@@ -1,3 +1,3 @@
 DKActivityIndicatorView
 =======================
-Customized activity indicator view
+Customized activity indicator view for iOS
