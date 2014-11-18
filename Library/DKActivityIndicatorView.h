@@ -13,7 +13,7 @@
 
 @property (nonatomic,strong) UIActivityIndicatorView *indi;
 
--(id)initInsideView:(UIView*)v;
+-(id)initInsideView:(UIView*)view;
 
 -(void)startAnimating;
 
