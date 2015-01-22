@@ -82,4 +82,9 @@
     }];
 }
 
+-(BOOL)isAnimating
+{
+    return !self.hidden;
+}
+
 @end
