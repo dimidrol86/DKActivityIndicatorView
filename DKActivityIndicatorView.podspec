@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "DKActivityIndicatorView"
-  s.version      = "1.0.1"
+  s.version      = "1.0.3"
   s.summary      = "Customized activity indicator view for iOS"
 
   #s.description  = <<-DESC
@@ -78,7 +78,7 @@ Pod::Spec.new do |s|
   #  Supports git, hg, bzr, svn and HTTP.
   #
 
-  s.source       = { :git => "https://github.com/dimidrol86/DKActivityIndicatorView.git", :tag => "v1.0.1" }
+  s.source       = { :git => "https://github.com/dimidrol86/DKActivityIndicatorView.git", :tag => "v1.0.3" }
 
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #

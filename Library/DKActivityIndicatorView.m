@@ -54,14 +54,14 @@
 {
     [self setHidden:NO];
     
+    [self.indi startAnimating];
+    [self.view setHidden:NO];
+    
     [UIView animateWithDuration:0.1f animations:^{
         
         [self setBackgroundColor:[[UIColor blackColor] colorWithAlphaComponent:0.5f]];
         
     } completion:^(BOOL finished) {
-        
-        [self.indi startAnimating];
-        [self.view setHidden:NO];
         
     }];
 }
