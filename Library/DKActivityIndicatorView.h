@@ -6,6 +6,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <UIView+AutoLayout/UIView+AutoLayout.h>
 
 @interface DKActivityIndicatorView : UIView
 
