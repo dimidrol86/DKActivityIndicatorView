@@ -52,7 +52,7 @@
 
 -(void)startAnimating
 {
-    [[self superview] bringSubviewToFront:self];
+    if ([self superview]) [[self superview] bringSubviewToFront:self];
     [self setHidden:NO];
     
     [self.indi startAnimating];
