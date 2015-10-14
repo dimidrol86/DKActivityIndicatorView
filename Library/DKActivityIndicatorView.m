@@ -9,7 +9,6 @@
 
 @implementation DKActivityIndicatorView
 
-
 -(id)initInsideView:(UIView*)view
 {
     self=[super init];
@@ -23,6 +22,7 @@
         [self setBackgroundColor:[[UIColor blackColor] colorWithAlphaComponent:0]];
         [self setHidden:YES];
         [view addSubview:self];
+        [self autoPinEdgesToSuperviewEdgesWithInsets:UIEdgeInsetsMake(0, 0, 0, 0)];
         
         self.view=[[UIView alloc] initWithFrame:CGRectMake((size.width/2)-(z/2), (size.height/2)-(z/2), z, z)];
         [self.view setHidden:YES];
@@ -37,7 +37,8 @@
         
         [self.view addSubview:self.indi];
         [self addSubview:self.view];
-        
+        [self.view autoSetDimensionsToSize:CGSizeMake(z, z)];
+        [self.view autoCenterInSuperview];
     }
     return self;
 }
@@ -49,6 +50,7 @@
     }
     return screenSize;
 }
+
 
 -(void)startAnimating
 {
