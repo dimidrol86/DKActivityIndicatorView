@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "DKActivityIndicatorView"
-  s.version      = "1.0.7"
+  s.version      = "1.0.8"
   s.summary      = "Customized activity indicator view for iOS"
 
   #s.description  = <<-DESC
@@ -65,7 +65,7 @@ Pod::Spec.new do |s|
   #
 
   # s.platform     = :ios
-  s.platform     = :ios, "6.0"
+  s.platform     = :ios, "7.0"
 
   #  When using multiple platforms
   # s.ios.deployment_target = "5.0"
@@ -78,7 +78,7 @@ Pod::Spec.new do |s|
   #  Supports git, hg, bzr, svn and HTTP.
   #
 
-  s.source       = { :git => "https://github.com/dimidrol86/DKActivityIndicatorView.git", :tag => "v1.0.7" }
+  s.source       = { :git => "https://github.com/dimidrol86/DKActivityIndicatorView.git", :tag => "v1.0.8" }
 
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
@@ -131,6 +131,6 @@ Pod::Spec.new do |s|
   s.requires_arc = true
 
   # s.xcconfig = { "HEADER_SEARCH_PATHS" => "$(SDKROOT)/usr/include/libxml2" }
-  s.dependency "UIView+AutoLayout", "~> 2.0.1"
+  s.dependency "PureLayout", "~> 3.0.1"
 
 end
