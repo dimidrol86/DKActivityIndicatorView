@@ -6,8 +6,29 @@
 //
 
 #import "DKActivityIndicatorView.h"
+#import "DKActivityIndicatorProxy.h"
+#pragma mark -
+@interface DKActivityIndicatorAppearance : NSObject <DKActivityIndicatorProps>
+@property (nonatomic, strong) UIColor* contextColor;
+@end
 
+@implementation DKActivityIndicatorAppearance
+
+@end
+
+#pragma mark -
 @implementation DKActivityIndicatorView
+
+/** customized appearance */
++(id<DKActivityIndicatorProps>)proxy
+{
+    static DKActivityIndicatorAppearance *proxy = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        proxy = [[DKActivityIndicatorAppearance alloc] init];
+    });
+    return proxy;
+}
 
 -(id)initInsideView:(UIView*)view
 {
@@ -17,28 +38,30 @@
         CGFloat z=80,x=37;
         
         CGSize size=[DKActivityIndicatorView screenSize];
-        
+        [self setAlpha:0];
         [self setFrame:CGRectMake(0, 0, size.width, size.height)];
-        [self setBackgroundColor:[[UIColor blackColor] colorWithAlphaComponent:0]];
         [self setHidden:YES];
         [view addSubview:self];
         [self autoPinEdgesToSuperviewEdgesWithInsets:UIEdgeInsetsMake(0, 0, 0, 0)];
         
-        self.view=[[UIView alloc] initWithFrame:CGRectMake((size.width/2)-(z/2), (size.height/2)-(z/2), z, z)];
-        [self.view setHidden:YES];
+        _view=[[UIView alloc] initWithFrame:CGRectMake((size.width/2)-(z/2), (size.height/2)-(z/2), z, z)];
+        [_view setHidden:YES];
         
-        [self.view setBackgroundColor:[[UIColor blackColor] colorWithAlphaComponent:0.8f]];
+        [_view setBackgroundColor:[[UIColor blackColor] colorWithAlphaComponent:0.8f]];
         
-        self.view.layer.cornerRadius=15.0f;
-        [self.view.layer setMasksToBounds:YES];
+        _view.layer.cornerRadius=15.0f;
+        [_view.layer setMasksToBounds:YES];
         
-        self.indi=[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
-        [self.indi setFrame:CGRectMake((z/2)-(x/2),(z/2)-(x/2), x, x)];
+        _indi=[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+        [_indi setFrame:CGRectMake((z/2)-(x/2),(z/2)-(x/2), x, x)];
         
-        [self.view addSubview:self.indi];
-        [self addSubview:self.view];
-        [self.view autoSetDimensionsToSize:CGSizeMake(z, z)];
-        [self.view autoCenterInSuperview];
+        [_view addSubview:_indi];
+        [self addSubview:_view];
+        [_view autoSetDimensionsToSize:CGSizeMake(z, z)];
+        [_view autoCenterInSuperview];
+        
+        //proxying
+        self = (DKActivityIndicatorView*)[DKActivityIndicatorProxy decoratedInstanceOf:self];
     }
     return self;
 }
@@ -59,11 +82,9 @@
     
     [self.indi startAnimating];
     [self.view setHidden:NO];
-    
-    [UIView animateWithDuration:0.1f animations:^{
-        
-        [self setBackgroundColor:[[UIColor blackColor] colorWithAlphaComponent:0.5f]];
-        
+
+    [UIView animateWithDuration:0.3f animations:^{
+        [self setAlpha:1];
     } completion:^(BOOL finished) {
         
     }];
@@ -71,9 +92,8 @@
 
 -(void)stopAnimating
 {
-    [UIView animateWithDuration:0.1f animations:^{
-        
-        [self setBackgroundColor:[[UIColor blackColor] colorWithAlphaComponent:0]];
+    [UIView animateWithDuration:0.2f animations:^{
+        [self setAlpha:0];
         
     } completion:^(BOOL finished) {
         
